@@ -1,0 +1,9 @@
+{
+  "name": "John",
+  "isEmployed": true,
+  "address": {
+    "street": "123 Main St",
+    "city": "New York",
+    "state": "WA"
+  }
+}

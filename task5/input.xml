@@ -1,0 +1,9 @@
+<person>
+  <name>Mary</name>
+  <isEmployed>true</isEmployed>
+  <address>
+    <street>123 Main St</street>
+    <city>Seattle</city>
+    <state>WA</state>
+  </address>
+</person>
