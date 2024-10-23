@@ -143,7 +143,7 @@ def delete_person(person_id):
     finally:
         session.close()
 
-# function to show a list of persons in our db
+#function to show a list of persons in our db
 def list_all_persons():
     session = Session()
     try:
@@ -161,7 +161,7 @@ def list_all_persons():
 if __name__ == "__main__":
     clear_database()
 
-    # Using all CRUD operations and showing a list of persons 2 times to see changes
+    #Using all CRUD operations and showing a list of persons 2 times to see changes
     id1 = create_person("Mary", True, "123 Main St", "New York", "NY")
     id2 = create_person("Jane", False, "456 Elm St", "Los Angeles", "CA")
     id3 = create_person("Bob", True, "789 Oak St", "Chicago", "IL")

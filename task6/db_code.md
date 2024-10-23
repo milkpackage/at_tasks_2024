@@ -1,3 +1,7 @@
+code for db:
+
+
+
 CREATE DATABASE task6_db;
 USE task6_db;
 
