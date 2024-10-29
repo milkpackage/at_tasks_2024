@@ -147,7 +147,6 @@ def test_relationships():
     finally:
         session.close()
 
-
 if __name__ == "__main__":
     clear_database()
     test_relationships()
