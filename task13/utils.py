@@ -29,7 +29,6 @@ class CustomLogger:
         self.logger.addHandler(console_handler)
         self.logger.addHandler(file_handler)
 
-
 class VideoRecorder:
     def __init__(self):
         self.recording = False
