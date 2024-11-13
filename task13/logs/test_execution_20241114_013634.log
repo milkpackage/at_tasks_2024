@@ -1,0 +1,4 @@
+2024-11-14 01:36:54,851 - ERROR - Test failed: test_close_button
+2024-11-14 01:36:54,860 - INFO - HTML source saved to: failed_tests_html/test_close_button_20241114_013654.html
+2024-11-14 01:37:00,296 - INFO - Video recorded for failed test: test_close_button
+2024-11-14 01:37:00,383 - INFO - Test session finished
