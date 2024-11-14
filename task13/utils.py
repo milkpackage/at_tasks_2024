@@ -5,7 +5,55 @@ import cv2
 import numpy as np
 from PIL import ImageGrab
 import json
+import sqlite3
 
+# adding a db connection + creation
+class Database:
+    def __init__(self):
+        self.conn = None
+        self.cursor = None
+        self._init_db()
+
+    def _init_db(self):
+        try:
+            self.conn = sqlite3.connect('test_results.db')
+            self.cursor = self.conn.cursor()
+
+            self.cursor.execute('''
+                CREATE TABLE IF NOT EXISTS test_results (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    test_name TEXT NOT NULL,
+                    status TEXT NOT NULL,
+                    timestamp TEXT NOT NULL,
+                    error_message TEXT,
+                    html_path TEXT,
+                    video_path TEXT,
+                    additional_info TEXT
+                )
+            ''')
+            self.conn.commit()
+        except Exception as e:
+            print(f"Error initializing database: {e}")
+            raise
+
+    def add_result(self, test_name, status, error_message=None, html_path=None,
+                   video_path=None, additional_info=None):
+        try:
+            timestamp = datetime.now().isoformat()
+            self.cursor.execute('''
+                INSERT INTO test_results 
+                (test_name, status, timestamp, error_message, html_path, video_path, additional_info)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+            ''', (test_name, status, timestamp, error_message, html_path,
+                  video_path, json.dumps(additional_info) if additional_info else None))
+            self.conn.commit()
+        except Exception as e:
+            print(f"Error adding result to database: {e}")
+            raise
+
+    def close(self):
+        if self.conn:
+            self.conn.close()
 
 class CustomLogger:
     def __init__(self):

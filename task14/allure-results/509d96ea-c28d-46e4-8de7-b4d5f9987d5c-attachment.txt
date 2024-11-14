@@ -1,0 +1,24 @@
+[32mINFO    [0m WDM:logger.py:11 ====== WebDriver manager ======
+[32mINFO    [0m WDM:logger.py:11 Get LATEST chromedriver version for google-chrome
+[32mINFO    [0m WDM:logger.py:11 Get LATEST chromedriver version for google-chrome
+[32mINFO    [0m WDM:logger.py:11 Driver [/Users/kyrylkarakov/.wdm/drivers/chromedriver/mac64/131.0.6778.69/chromedriver-mac-arm64/chromedriver] found in cache
+[32mINFO    [0m test_booking:test_booking.py:133 Starting test
+[32mINFO    [0m video_recorder:video_recorder.py:28 Started recording: videos/test_recording_20241114_034056.mp4
+[32mINFO    [0m test_booking:test_booking.py:139 Navigated to booking.com
+[32mINFO    [0m test_booking:test_booking.py:47 Dismissing with click
+[32mINFO    [0m test_booking:test_booking.py:54 Changing currency to: EUR
+[32mINFO    [0m page_factory:page_factory.py:37 Selecting option: EUR
+[32mINFO    [0m page_factory:page_factory.py:22 Clicking element: ('css selector', "button[data-testid='header-currency-picker-trigger']")
+[32mINFO    [0m page_factory:page_factory.py:22 Clicking element: ('xpath', "//div[contains(text(), 'EUR')]")
+[32mINFO    [0m test_booking:test_booking.py:66 Setting adults number to: 2 adults
+[32mINFO    [0m page_factory:page_factory.py:37 Selecting option: 2 adults
+[32mINFO    [0m page_factory:page_factory.py:22 Clicking element: ('css selector', "button[data-testid='occupancy-config']")
+[32mINFO    [0m page_factory:page_factory.py:22 Clicking element: ('xpath', "//div[contains(text(), '2 adults')]")
+[32mINFO    [0m page_factory:page_factory.py:22 Clicking element: ('xpath', "//span[contains(text(), '2 adults')]")
+[32mINFO    [0m test_booking:test_booking.py:60 Changing language to: Українська
+[32mINFO    [0m page_factory:page_factory.py:37 Selecting option: Українська
+[32mINFO    [0m page_factory:page_factory.py:22 Clicking element: ('css selector', "button[data-testid='header-language-picker-trigger']")
+[32mINFO    [0m page_factory:page_factory.py:22 Clicking element: ('xpath', "//div[contains(text(), 'Українська')]")
+[32mINFO    [0m page_factory:page_factory.py:22 Clicking element: ('xpath', "//span[contains(text(), 'Українська')]")
+[32mINFO    [0m test_booking:test_booking.py:181 Test completed successfully!
+[32mINFO    [0m test_booking:test_booking.py:114 Video attached to Allure report: videos/test_recording_20241114_034056.mp4

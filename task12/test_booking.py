@@ -1,6 +1,5 @@
 #pytest test_booking.py -v -s
 
-# test_booking.py
 import logging
 import pytest
 from selenium.webdriver.common.by import By
