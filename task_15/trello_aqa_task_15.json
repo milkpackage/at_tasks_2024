@@ -1,0 +1,408 @@
+{
+	"info": {
+		"_postman_id": "665e29ec-f951-41f1-b916-50a1f2c5fc46",
+		"name": "Trello",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27352184"
+	},
+	"item": [
+		{
+			"name": "Create board",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 and save board ID\", function () {",
+							"    pm.response.to.have.status(200);",
+							"   ",
+							"});",
+							"",
+							"pm.test(\"Is board created with Name\", function () {",
+							"    const jsonData = pm.response.json();",
+							"",
+							"    pm.expect(jsonData.id).to.exist;",
+							"    pm.expect(jsonData.name).to.exist;",
+							"    pm.expect(jsonData.name).to.eql(\"AQATESTLAB15\");",
+							"}",
+							");",
+							"",
+							"const jsonData = pm.response.json();",
+							"pm.environment.set(\"boardid\", jsonData.id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.trello.com/1/boards/?name=AQATESTLAB15&key={{api_key_trello}}&token={{api_token_value}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"trello",
+						"com"
+					],
+					"path": [
+						"1",
+						"boards",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "AQATESTLAB15"
+						},
+						{
+							"key": "key",
+							"value": "{{api_key_trello}}"
+						},
+						{
+							"key": "token",
+							"value": "{{api_token_value}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create list",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Create card successfully\", function () {",
+							"    pm.response.to.have.status(200);      ",
+							"    ",
+							"});",
+							"",
+							"pm.test(\"Is List created and Name is similar\", function () {",
+							"    const jsonData = pm.response.json();",
+							"",
+							"    pm.expect(jsonData.id).to.exist;",
+							"    pm.expect(jsonData.name).to.eql(\"AQATask\"); ",
+							"",
+							"});",
+							"",
+							"const jsonData = pm.response.json();",
+							"pm.environment.set(\"listid\", jsonData.id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.trello.com/1/lists?name=AQATask&idBoard={{boardid}}&key={{api_key_trello}}&token={{api_token_value}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"trello",
+						"com"
+					],
+					"path": [
+						"1",
+						"lists"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "AQATask"
+						},
+						{
+							"key": "idBoard",
+							"value": "{{boardid}}"
+						},
+						{
+							"key": "key",
+							"value": "{{api_key_trello}}"
+						},
+						{
+							"key": "token",
+							"value": "{{api_token_value}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create card",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"    ",
+							"    const jsonData = pm.response.json();",
+							"    pm.environment.set(\"cardid\", jsonData.id);",
+							"",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.trello.com/1/cards?idList={{listid}}&key={{api_key_trello}}&token={{api_token_value}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"trello",
+						"com"
+					],
+					"path": [
+						"1",
+						"cards"
+					],
+					"query": [
+						{
+							"key": "idList",
+							"value": "{{listid}}"
+						},
+						{
+							"key": "key",
+							"value": "{{api_key_trello}}"
+						},
+						{
+							"key": "token",
+							"value": "{{api_token_value}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add due date",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Due date added\", function() {",
+							"",
+							"    const jsonData = pm.response.json();",
+							"",
+							"    pm.expect(jsonData.due).to.exist;",
+							"    pm.expect(jsonData.due).to.not.be.null;",
+							"    ",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "https://api.trello.com/1/cards/{{cardid}}?key={{api_key_trello}}&token={{api_token_value}}&due=\"2024-12-12\"",
+					"protocol": "https",
+					"host": [
+						"api",
+						"trello",
+						"com"
+					],
+					"path": [
+						"1",
+						"cards",
+						"{{cardid}}"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{api_key_trello}}"
+						},
+						{
+							"key": "token",
+							"value": "{{api_token_value}}"
+						},
+						{
+							"key": "due",
+							"value": "\"2024-12-12\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a Label",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"",
+							"    const jsonData = pm.response.json();",
+							"    pm.environment.set(\"labelid\", jsonData.id);",
+							"",
+							"});",
+							"",
+							"pm.test(\"Create label successfully\", function () {",
+							"    const jsonData = pm.response.json();",
+							"    pm.environment.set(\"labelid\", jsonData.id);",
+							"    ",
+							"    pm.expect(jsonData.id).to.exist;",
+							"    pm.expect(jsonData.name).to.eql(\"AQATask\"); ",
+							"    pm.expect(jsonData.idBoard).to.eql(pm.environment.get(\"boardid\")); ",
+							"    ",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.trello.com/1/labels?name=AQATask&color=pink&idBoard={{boardid}}&key={{api_key_trello}}&token={{api_token_value}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"trello",
+						"com"
+					],
+					"path": [
+						"1",
+						"labels"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "AQATask"
+						},
+						{
+							"key": "color",
+							"value": "pink"
+						},
+						{
+							"key": "idBoard",
+							"value": "{{boardid}}"
+						},
+						{
+							"key": "key",
+							"value": "{{api_key_trello}}"
+						},
+						{
+							"key": "token",
+							"value": "{{api_token_value}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Label",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Label added to a card\", function () {",
+							"    ",
+							"    const jsonData = pm.response.json();",
+							"    pm.expect(jsonData.idLabels).to.exist;",
+							"   ",
+							"",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "idLabels",
+							"value": "{{labelid}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.trello.com/1/cards/{{cardid}}?key={{api_key_trello}}&token={{api_token_value}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"trello",
+						"com"
+					],
+					"path": [
+						"1",
+						"cards",
+						"{{cardid}}"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{api_key_trello}}"
+						},
+						{
+							"key": "token",
+							"value": "{{api_token_value}}"
+						},
+						{
+							"key": "idLabels",
+							"value": "{{labelid}}",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
