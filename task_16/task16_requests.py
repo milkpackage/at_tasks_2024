@@ -11,7 +11,7 @@ class TestTrelloSyncAPI:
             params={
                 **auth_params,
                 "name": board_request.name,
-                "defaultLists": "false"  # Prevent creation of default lists
+                "defaultLists": "false"
             }
         )
         assert response.status_code == 200, f"Failed to create board. Response: {response.text}"
@@ -33,7 +33,7 @@ class TestTrelloSyncAPI:
         return list_data['id']
 
     def test_complete_flow(self, base_url, auth_params):
-        # Create board
+        #Create board
         board_request = BoardRequest()
         response = requests.post(
             f"{base_url}/boards",
@@ -49,7 +49,7 @@ class TestTrelloSyncAPI:
         board_id = board_response.id
         print(f"Board created with ID: {board_id}")
 
-        # Create list
+        #Create list
         list_request = ListRequest(name="AQATask", idBoard=board_id)
         response = requests.post(
             f"{base_url}/lists",
@@ -60,7 +60,7 @@ class TestTrelloSyncAPI:
         list_id = list_data['id']
         print(f"List created with ID: {list_id}")
 
-        # Create card
+        #Create card
         card_request = CardRequest(idList=list_id)
         response = requests.post(
             f"{base_url}/cards",
@@ -71,7 +71,7 @@ class TestTrelloSyncAPI:
         card_id = card_data['id']
         print(f"Card created with ID: {card_id}")
 
-        # Add due date
+        #Add due date
         due_date = "2024-12-12"
         response = requests.put(
             f"{base_url}/cards/{card_id}",
@@ -82,7 +82,7 @@ class TestTrelloSyncAPI:
         assert card_data['due'] is not None
         print(f"Due date added: {due_date}")
 
-        # Create label
+        #Create label
         label_request = LabelRequest(
             name="AQATask",
             color="pink",
@@ -97,7 +97,7 @@ class TestTrelloSyncAPI:
         label_id = label_data['id']
         print(f"Label created with ID: {label_id}")
 
-        # Add label to card
+        #Add label to card
         response = requests.put(
             f"{base_url}/cards/{card_id}",
             params=auth_params,
