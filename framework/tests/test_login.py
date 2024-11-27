@@ -19,7 +19,7 @@ def test_login(driver):
         
     except Exception as e:
         logger.error(f"Test failed with error: {str(e)}")
-        timestamp = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         screenshot_path = f"test_failure_{timestamp}.png"
         driver.save_screenshot(screenshot_path)
         logger.error(f"Screenshot saved to {screenshot_path}")

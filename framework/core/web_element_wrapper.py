@@ -1,5 +1,6 @@
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.select import Select
 import logging
 
 logger = logging.getLogger(__name__)
@@ -21,8 +22,18 @@ class Element:
     def click(self):
         logger.debug(f"Clicking element with locator: {self.locator}")
         self.wait.until(EC.element_to_be_clickable(self.locator)).click()
+
+    def select_by_visible_text(self, text):
+        select = Select(self.find())
+        select.select_by_visible_text(text)
+
+    def select_by_value(self, value):
+        select = Select(self.find())
+        select.select_by_value(value)
+
+
         
-    @property
+    #@property
     def text(self):
         return self.find().text
         

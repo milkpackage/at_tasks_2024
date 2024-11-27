@@ -48,7 +48,7 @@ class LoginPage(BasePage):
             
         except Exception as e:
             logger.error(f"Login failed with error: {str(e)}")
-            timestamp = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             screenshot_path = f"error_screenshot_{timestamp}.png"
             self.driver.save_screenshot(screenshot_path)
             logger.error(f"Screenshot saved to {screenshot_path}")
