@@ -1,2 +1,8 @@
 .idea/
 task16/api_data
+framework/__pycache__/
+framework/business_objects/__pycache__/
+framework/core/__pycache__/
+framework/mantis_framework.egg-info/
+framework/page_objects/__pycache__/
+framework/tests/__pycache__/

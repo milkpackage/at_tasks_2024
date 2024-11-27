@@ -1,7 +1,18 @@
-1.How to choose browser
+1. Installing framework:
+
+in framework folder :
+pip install -e .
+
+
+2.How to choose browser for testing
   
 Firefox:
-pytest test_about_us.py --browser firefox
+--browser firefox
 
 Chrome:
-pytest test_about_us.py --browser chrome 
+--browser chrome 
+
+3. Launch:
+
+pytest in terminal
+add --browser firefox after pytest to launch in firefox
