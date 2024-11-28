@@ -32,8 +32,6 @@ class Element:
         select.select_by_value(value)
 
 
-        
-    #@property
     def text(self):
         return self.find().text
         

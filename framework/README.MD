@@ -1,18 +1,34 @@
-1. Installing framework:
+# Framework Setup and Testing Guide
 
-in framework folder :
+## Installation
+
+To install the framework packages navigate to the framework folder and run:
+```bash
 pip install -e .
+```
 
+## Browser Selection
 
-2.How to choose browser for testing
-  
-Firefox:
+You can choose which browser to use for testing by adding parameters:
+
+For Firefox:
+```bash
 --browser firefox
+```
 
-Chrome:
---browser chrome 
+For Chrome:
+```bash
+--browser chrome
+```
 
-3. Launch:
+## Running Tests
 
-pytest in terminal
-add --browser firefox after pytest to launch in firefox
+To launch tests, use pytest in your terminal in root folder:
+```bash
+pytest
+```
+
+To specifically run tests in Firefox:
+```bash
+pytest --browser firefox
+```
