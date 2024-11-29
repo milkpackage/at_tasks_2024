@@ -10,17 +10,18 @@ def test_login(driver):
         logger.debug("Starting login test")
         driver.get("http://localhost/")
         logger.debug(f"Current URL: {driver.current_url}")
-        logger.debug("Page source:")
-        logger.debug(driver.page_source)
-        
+
         login_bo = LoginBO(driver)
-        result = login_bo.login("administrator", "admin")
-        assert result is True
-        
+        result = login_bo.login("administrator", "admin")  # Use correct password
+
+        # Add multiple verification points
+        assert result is True, "Login verification failed"
+        assert "administrator" in driver.page_source, "Username not found in page"
+        assert "logout" in driver.page_source.lower(), "Logout link not found"
+
     except Exception as e:
         logger.error(f"Test failed with error: {str(e)}")
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        screenshot_path = f"test_failure_{timestamp}.png"
+        screenshot_path = "login_failure.png"
         driver.save_screenshot(screenshot_path)
         logger.error(f"Screenshot saved to {screenshot_path}")
         raise
